@@ -16,5 +16,6 @@ defmodule ExMon.Schemas.Trainer do
     %__MODULE__{}
     |> cast(params, @required_params)
     |> validate_required(@required_params)
+    |> validate_length(:password_hash, 8)
   end
 end
