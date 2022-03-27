@@ -5,7 +5,7 @@ config :ex_mon_api, ExMonApi.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "ex_mon_api_dev",
+  database: "ex_mon",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
