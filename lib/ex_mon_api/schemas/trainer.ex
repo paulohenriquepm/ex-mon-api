@@ -8,14 +8,22 @@ defmodule ExMon.Schemas.Trainer do
   schema "trainers" do
     field :name, :string
     field :password_hash, :string
+    field :password, :string, virtual: true
     timestamps()
   end
 
-  @required_params [:name, :password_hash]
+  @required_params [:name, :password]
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_params)
     |> validate_required(@required_params)
-    |> validate_length(:password_hash, 8)
+    |> validate_length(:password, min: 8)
+    |> encrypt_password()
   end
+
+  defp encrypt_password(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, Argon2.add_hash(password))
+  end
+
+  defp encrypt_password(changeset), do: changeset
 end
