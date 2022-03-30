@@ -1,4 +1,4 @@
-defmodule ExMon.Schemas.Trainer do
+defmodule ExMonApi.Schemas.Trainer do
   use Ecto.Schema
 
   import Ecto.Changeset
