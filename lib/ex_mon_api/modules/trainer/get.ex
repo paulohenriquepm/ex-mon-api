@@ -1,5 +1,5 @@
-defmodule ExMonApi.Modules.Trainer.Delete do
-  alias ExMonApi.Repositories.Trainer.Deleter, as: TrainerDeleter
+defmodule ExMonApi.Modules.Trainer.Get do
+  alias ExMonApi.Repositories.Trainer.Finder, as: TrainerFinder
   alias Ecto.UUID
 
   def call(id) do
@@ -11,7 +11,7 @@ defmodule ExMonApi.Modules.Trainer.Delete do
   defp validates_casted_id(casted_result) do
     case casted_result do
       :error -> {:error, "Invalid ID format"}
-      {:ok, id} -> TrainerDeleter.delete_by_id(id)
+      {:ok, id} -> TrainerFinder.find_by_id(id)
     end
   end
 end
