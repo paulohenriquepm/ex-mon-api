@@ -22,7 +22,7 @@ defmodule ExMonApi.Schemas.Trainer do
   def changeset(params), do: create_changeset(%__MODULE__{}, params)
   def changeset(trainer, params), do: create_changeset(trainer, params)
 
-  defp create_changeset(trainer) do
+  defp create_changeset(trainer, params) do
     trainer
     |> cast(params, @required_params)
     |> validate_required(@required_params)

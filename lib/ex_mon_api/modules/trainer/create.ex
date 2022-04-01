@@ -1,6 +1,6 @@
 defmodule ExMonApi.Modules.Trainer.Create do
-  alias ExMonApi.Repo
   alias ExMonApi.Schemas.Trainer
+  alias ExMonApi.Repo
 
   def call(params) do
     params
