@@ -16,12 +16,15 @@ defmodule ExMonApiWeb.ErrorView do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
 
-  def render("bad_request.json", %{result: result}) do
+  def render("bad_request.json", %{result: %Ecto.Changeset{} = result}) do
     %{message: translate_errors(result)}
+  end
+  def render("bad_request.json", %{result: message}) do
+    %{message: message}
   end
 
   defp translate_errors(result) do
-    traverse_errors(changeset, fn {msg, opts} ->
+    traverse_errors(result, fn {msg, opts} ->
       Enum.reduce(opts, msg, fn {key, value}, acc ->
         String.replace(acc, "%{#{key}}", to_string(value))
       end)
