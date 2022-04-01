@@ -1,6 +1,6 @@
 defmodule ExMonApi.Modules.Trainer.Create do
+  alias ExMonApi.Repositories.Trainer.Creator, as: TrainerCreator
   alias ExMonApi.Schemas.Trainer
-  alias ExMonApi.Repo
 
   def call(params) do
     params
@@ -8,6 +8,6 @@ defmodule ExMonApi.Modules.Trainer.Create do
     |> create_trainer()
   end
 
-  defp create_trainer({:ok, changeset}), do: Repo.insert(changeset)
+  defp create_trainer({:ok, changeset}), do: TrainerCreator.execute(changeset)
   defp create_trainer({:error, _changeset} = error), do: error
 end
