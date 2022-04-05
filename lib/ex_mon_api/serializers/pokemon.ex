@@ -1,4 +1,4 @@
-defmodule ExMonApi.Schemas.Pokemon do
+defmodule ExMonApi.Serializers.Pokemon do
   @keys [:id, :name, :weight, :types]
 
   @enforce_keys @keys
@@ -6,7 +6,7 @@ defmodule ExMonApi.Schemas.Pokemon do
   @derive Jason.Encoder
   defstruct @keys
 
-  def build(%{"id" => id, "name" => name, "weight" => weight, "types" => types}) do
+  def serialize(%{"id" => id, "name" => name, "weight" => weight, "types" => types}) do
     %__MODULE__{
       id: id,
       name: name,
