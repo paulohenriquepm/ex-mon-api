@@ -19,7 +19,12 @@ defmodule ExMonApiWeb.ErrorView do
   def render("bad_request.json", %{result: %Ecto.Changeset{} = result}) do
     %{message: translate_errors(result)}
   end
+
   def render("bad_request.json", %{result: message}) do
+    %{message: message}
+  end
+
+  def render("unauthorized.json", %{result: message}) do
     %{message: message}
   end
 
