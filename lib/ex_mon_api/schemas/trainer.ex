@@ -11,7 +11,7 @@ defmodule ExMonApi.Schemas.Trainer do
     field :name, :string
     field :password_hash, :string
     field :password, :string, virtual: true
-    has_many(:pokemons, Pokemon)
+    has_many(:pokemon, Pokemon)
     timestamps()
   end
 
